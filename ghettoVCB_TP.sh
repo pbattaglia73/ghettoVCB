@@ -13,7 +13,7 @@ LAST_MODIFIED_DATE=2021_10_20
 VERSION=1
 
 # directory that all VM backups should go (e.g. /vmfs/volumes/SAN_LUN1/mybackupdir)
-VM_BACKUP_VOLUME=/vmfs/volumes/mini-local-datastore-hdd/backups
+VM_BACKUP_VOLUME=/vmfs/volumes/Backup
 
 # Format output of VMDK backup
 # zeroedthick
@@ -23,7 +23,7 @@ VM_BACKUP_VOLUME=/vmfs/volumes/mini-local-datastore-hdd/backups
 DISK_BACKUP_FORMAT=thin
 
 # Number of backups for a given VM before deleting
-VM_BACKUP_ROTATION_COUNT=3
+VM_BACKUP_ROTATION_COUNT=6
 
 # Shutdown guestOS prior to running backups and power them back on afterwards
 # This feature assumes VMware Tools are installed, else they will not power down and loop forever
@@ -95,22 +95,22 @@ EMAIL_LOG=1
 EMAIL_DELAY_INTERVAL=1
 
 # Email SMTP server
-EMAIL_SERVER=smtp.ip-box.it
+EMAIL_SERVER=pro.turbo-smtp.com
 
 # Email SMTP server port
 EMAIL_SERVER_PORT=25
 
 # Email SMTP username
-EMAIL_USER_NAME=smtp@ip-box.it
+EMAIL_USER_NAME=pbattaglia@teampower.it
 
 # Email SMTP password
-EMAIL_USER_PASSWORD=
+EMAIL_USER_PASSWORD=Plecostomus2022@
 
 # Email FROM
-EMAIL_FROM=root@ghettoVCB.local
+EMAIL_FROM=esxi@MERCURE.local
 
 # Comma seperated list of receiving email addresses
-EMAIL_TO=backup@teampower.it
+EMAIL_TO=backup@teampower.it,smtp@ip-box.it
 
 # Comma seperated list of additional receiving email addresses if status is not "OK"
 EMAIL_ERRORS_TO=

@@ -89,28 +89,28 @@ NFS_VM_BACKUP_DIR=mybackups
 # Email Alerting 1=yes, 0=no
 EMAIL_ALERT=0
 # Email log 1=yes, 0=no
-EMAIL_LOG=0
+EMAIL_LOG=1
 
 # Email Delay Interval from NC (netcat) - default 1
 EMAIL_DELAY_INTERVAL=1
 
 # Email SMTP server
-EMAIL_SERVER=auroa.primp-industries.com
+EMAIL_SERVER=smtp.ip-box.it
 
 # Email SMTP server port
 EMAIL_SERVER_PORT=25
 
 # Email SMTP username
-EMAIL_USER_NAME=
+EMAIL_USER_NAME=smtp@ip-box.it
 
 # Email SMTP password
 EMAIL_USER_PASSWORD=
 
 # Email FROM
-EMAIL_FROM=root@ghettoVCB
+EMAIL_FROM=root@ghettoVCB.local
 
 # Comma seperated list of receiving email addresses
-EMAIL_TO=auroa@primp-industries.com
+EMAIL_TO=backup@teampower.it
 
 # Comma seperated list of additional receiving email addresses if status is not "OK"
 EMAIL_ERRORS_TO=

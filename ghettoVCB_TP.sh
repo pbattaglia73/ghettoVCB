@@ -92,7 +92,7 @@ EMAIL_ALERT=0
 EMAIL_LOG=1
 
 # Email Delay Interval from NC (netcat) - default 1
-EMAIL_DELAY_INTERVAL=1
+EMAIL_DELAY_INTERVAL=3
 
 # Email SMTP server
 EMAIL_SERVER=pro.turbo-smtp.com
@@ -1512,7 +1512,7 @@ buildHeaders() {
 sendDelay() {
     c=0
     while read L; do
-    	[ $c -lt 15 ] && sleep ${EMAIL_DELAY_INTERVAL}
+    	[ $c -lt 4 ] && sleep ${EMAIL_DELAY_INTERVAL}
     	c=$((c+1))
     	echo $L
     done
@@ -1562,7 +1562,7 @@ sendMail() {
             IFS=','
             for i in ${EMAIL_TO}; do
                 buildHeaders ${i}
-                cat "${EMAIL_LOG_CONTENT}" | sendDelay | openssl s_client -starttls smtp -crlf -pause -connect  "${EMAIL_SERVER}":"${EMAIL_SERVER_PORT}"
+                cat "${EMAIL_LOG_CONTENT}" | sendDelay| "${NC_BIN}" "${EMAIL_SERVER}" "${EMAIL_SERVER_PORT}" > /dev/null 2>&1
                 #"${NC_BIN}" -i "${EMAIL_DELAY_INTERVAL}" "${EMAIL_SERVER}" "${EMAIL_SERVER_PORT}" < "${EMAIL_LOG_CONTENT}" > /dev/null 2>&1
                 if [[ $? -eq 1 ]] ; then
                     logger "info" "ERROR: Failed to email log output to ${EMAIL_SERVER}:${EMAIL_SERVER_PORT} to ${EMAIL_TO}\n"
@@ -1571,7 +1571,7 @@ sendMail() {
             unset IFS
         else
             buildHeaders ${EMAIL_TO}
-            cat "${EMAIL_LOG_CONTENT}" | sendDelay | openssl s_client -starttls smtp -crlf -pause -connect  "${EMAIL_SERVER}":"${EMAIL_SERVER_PORT}"
+            cat "${EMAIL_LOG_CONTENT}" | sendDelay| "${NC_BIN}" "${EMAIL_SERVER}" "${EMAIL_SERVER_PORT}" > /dev/null 2>&1
             #"${NC_BIN}" -i "${EMAIL_DELAY_INTERVAL}" "${EMAIL_SERVER}" "${EMAIL_SERVER_PORT}" < "${EMAIL_LOG_CONTENT}" > /dev/null 2>&1
             if [[ $? -eq 1 ]] ; then
                 logger "info" "ERROR: Failed to email log output to ${EMAIL_SERVER}:${EMAIL_SERVER_PORT} to ${EMAIL_TO}\n"
@@ -1713,3 +1713,13 @@ else
 	Get_Final_Status_Sendemail
     exit 1
 fi
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
